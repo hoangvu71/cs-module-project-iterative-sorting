@@ -1,3 +1,4 @@
+from math import floor
 def linear_search(arr, target):
     # Your code here
     for i in range(len(arr)):
@@ -12,26 +13,25 @@ def binary_search(arr, target):
 
     # Your code here
     # Find the middle number for the root of the tree
-    tree_root_index = int(len(arr)/2)
-    print(tree_root_index)
-    if arr[tree_root_index] == target:
-        print("Target:", target)
-        print("Tree root", arr[tree_root_index])
-        print("They are equal why is this not returning?")
-        return tree_root_index
+    start = 0
+    end = len(arr) - 1
+    unfound = True
+    while unfound and end >= start:
 
-    # Is the target bigger than the root?
-    if target > arr[tree_root_index]:
-        # Then search only the right side of the tree
-        arr = arr[tree_root_index:]
-        print(arr)
-        binary_search(arr, target)
+        mid = (start + end) // 2
 
-    elif target < arr[tree_root_index]:
-        arr = arr[:tree_root_index + 1]
-        binary_search(arr, target)
+        if arr[mid] == target:
+            unfound = False
+            return mid
+
+        elif target > arr[mid]:
+            start = mid + 1
+        
+        elif target < arr[mid]:
+            print(start)
+            end = mid -1 
 
     return -1  # not found
 
 arr1 = [-9, -8, -6, -4, -3, -2, 0, 1, 2, 3, 5, 7, 8, 9]
-print(binary_search(arr1, 0))
+print(binary_search(arr1, -6))
