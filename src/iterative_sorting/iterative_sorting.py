@@ -7,9 +7,14 @@ def selection_sort(arr):
         # TO-DO: find next smallest element
         # (hint, can do in 3 loc)
         # Your code here
-
-
+        for unsorted_index in range(i, len(arr)):
+            if arr[unsorted_index] < arr[smallest_index]:
+                smallest_index = unsorted_index
         # TO-DO: swap
+        arr.insert(cur_index, arr[smallest_index])
+        arr.insert(smallest_index + 1, arr[cur_index + 1])
+        arr.pop(cur_index + 1)
+        arr.pop(smallest_index + 1)
         # Your code here
 
     return arr
@@ -18,8 +23,39 @@ def selection_sort(arr):
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
     # Your code here
+    unsorted = True
+    
+    # While the list is not sorted
+    while unsorted:
 
+      # keep track if they are sorted
+      count = 0
 
+      # Loop through the array
+      for i in range(1, len(arr)):
+          prev =i - 1
+          current = i
+
+          # if the current value is less than the previous value
+          if arr[current] < arr[prev]:
+
+              # switch their places
+              arr.insert(prev, arr[current])
+
+              arr.insert(current+1, arr[prev + 1])
+
+              arr.pop(current + 2)
+
+              arr.pop(current + 1)
+              
+              # keep track if they are sorted
+              count -= 1
+
+      # if count is still the same value ( 0 ), then it means
+      # all value in array is sorted
+      # make unsorted becomes False
+      if count == 0:
+        unsorted = False
     return arr
 
 '''
